@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import MenuItem from './MenuItem';
 
-const Navbar = () => {
+const Navbar = ({ onMenuChange }) => {
+  const [activeItem, setActiveItem] = useState('Notes');
+  const menuItems = ['Notes', 'Étudiants', 'Matières', 'À propos'];
+
   const handleMenuClick = (item) => {
-    alert(`Vous avez cliqué sur : ${item}`);
+    setActiveItem(item);
+    if (onMenuChange) {
+      onMenuChange(item);
+    }
   };
 
   return (
@@ -23,27 +30,13 @@ const Navbar = () => {
         display: 'flex',
         gap: '20px'
       }}>
-        {['Notes', 'Étudiants', 'Matières', 'À propos'].map((item) => (
-          <li key={item}>
-            <button
-              onClick={() => handleMenuClick(item)}
-              style={{
-                backgroundColor: 'transparent',
-                border: 'none',
-                color: 'white',
-                cursor: 'pointer',
-                fontSize: '1em',
-                padding: '5px 10px',
-                borderRadius: '4px',
-                transition: 'background-color 0.3s',
-                ':hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                }
-              }}
-            >
-              {item}
-            </button>
-          </li>
+        {menuItems.map((item) => (
+          <MenuItem
+            key={item}
+            label={item}
+            isActive={activeItem === item}
+            onClick={() => handleMenuClick(item)}
+          />
         ))}
       </ul>
     </nav>

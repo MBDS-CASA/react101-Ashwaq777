@@ -22,6 +22,7 @@ const RandomItem = ({ item }) => {
         {item.course}
       </h3>
       <div style={{ margin: '15px 0' }}>
+        <p><strong>ID :</strong> {item.unique_id}</p>
         <p><strong>Étudiant :</strong> {item.student.firstname} {item.student.lastname}</p>
         <p><strong>ID étudiant :</strong> {item.student.id}</p>
         <p><strong>Date :</strong> {new Date(item.date).toLocaleDateString('fr-FR')}</p>
@@ -33,23 +34,6 @@ const RandomItem = ({ item }) => {
           <strong>Note est :</strong> {item.grade}/100
         </p>
       </div>
-      <button 
-        onClick={() => window.location.reload()}
-        style={{
-          backgroundColor: '#3498db43',
-          color: 'white',
-          border: 'none',
-          padding: '8px 16px',
-          borderRadius: '4px',
-          cursor: 'pointer',
-          fontSize: '0.9em',
-          transition: 'background-color 0.3s'
-        }}
-        onMouseOver={(e) => e.target.style.backgroundColor = '#19982369'}
-        onMouseOut={(e) => e.target.style.backgroundColor = '#52616b86'}
-      >
-        Afficher un autre élément
-      </button>
     </div>
   );
 };
