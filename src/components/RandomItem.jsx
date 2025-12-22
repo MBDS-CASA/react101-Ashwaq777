@@ -36,7 +36,7 @@ const RandomItem = ({ item }) => {
       <button 
         onClick={() => window.location.reload()}
         style={{
-          backgroundColor: '#3498db',
+          backgroundColor: '#3498db43',
           color: 'white',
           border: 'none',
           padding: '8px 16px',
@@ -45,8 +45,8 @@ const RandomItem = ({ item }) => {
           fontSize: '0.9em',
           transition: 'background-color 0.3s'
         }}
-        onMouseOver={(e) => e.target.style.backgroundColor = '#2980b9'}
-        onMouseOut={(e) => e.target.style.backgroundColor = '#3498db'}
+        onMouseOver={(e) => e.target.style.backgroundColor = '#19982369'}
+        onMouseOut={(e) => e.target.style.backgroundColor = '#52616b86'}
       >
         Afficher un autre élément
       </button>
