@@ -1,6 +1,8 @@
 import React from 'react';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  
   return (
     <footer style={{
       textAlign: 'center',
@@ -18,7 +20,7 @@ const Footer = () => {
         color: '#7f8c8d',
         fontSize: '0.9em'
       }}>
-        Tous droits réservés - Hiba Lou
+        © {currentYear} - Tous droits réservés - Hiba Lou
       </p>
     </footer>
   );
