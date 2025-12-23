@@ -1,41 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 
-const RandomItem = ({ item }) => {
-  if (!item) return <div>Chargement des données...</div>;
+const MainContent = () => {
+    const [now, setNow] = useState(new Date());
 
-  return (
-    <div style={{
-      backgroundColor: '#ffffff',
-      borderRadius: '8px',
-      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-      padding: '20px',
-      margin: '20px auto',
-      maxWidth: '500px',
-      fontFamily: 'Arial, sans-serif'
-    }}>
-      <h3 style={{
-        color: '#2c3e50',
-        borderBottom: '2px solid #f0f0f0',
-        paddingBottom: '10px',
-        marginTop: 0
-      }}>
-        {item.course}
-      </h3>
-      <div style={{ margin: '15px 0' }}>
-        <p><strong>ID :</strong> {item.unique_id}</p>
-        <p><strong>Étudiant :</strong> {item.student.firstname} {item.student.lastname}</p>
-        <p><strong>ID étudiant :</strong> {item.student.id}</p>
-        <p><strong>Date :</strong> {new Date(item.date).toLocaleDateString('fr-FR')}</p>
-        <p style={{
-          color: item.grade >= 50 ? '#27ae60' : '#e74c3c',
-          fontWeight: 'bold',
-          fontSize: '1.2em'
-        }}>
-          <strong>Note est :</strong> {item.grade}/100
-        </p>
-      </div>
-    </div>
-  );
+    useEffect(() => {
+        const timer = setInterval(() => setNow(new Date()), 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const jours = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+    const mois = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+    const pad = (n) => String(n).padStart(2, "0");
+
+    const jour = jours[now.getDay()];
+    const moisNom = mois[now.getMonth()];
+    const annee = now.getFullYear();
+    const heure = pad(now.getHours());
+    const minute = pad(now.getMinutes());
+    const second = pad(now.getSeconds());
+
+    return (
+        <main style={{ padding: "20px", textAlign: "center" }}>
+            Bonjour, on est le {jour}, {moisNom}, {annee} et il est {heure}:{minute}:{second}
+        </main>
+    );
 };
 
-export default RandomItem;
+export default MainContent;
